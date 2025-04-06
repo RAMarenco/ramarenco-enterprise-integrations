@@ -1,0 +1,6 @@
+@DragonBall.Api_HostAddress = http://localhost:5131
+
+GET {{DragonBall.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
