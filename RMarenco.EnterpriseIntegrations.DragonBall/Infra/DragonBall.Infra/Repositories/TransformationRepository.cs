@@ -7,9 +7,9 @@ namespace DragonBall.Infra.Repositories
 {
     class TransformationRepository(AppDbContext context) : ITransformationRepository
     {
-        public async Task AddTransformation(Transformation transformation)
+        public async Task AddTransformations(IEnumerable<Transformation> transformation)
         {
-            await context.Transformations.AddAsync(transformation).ConfigureAwait(false);
+            await context.Transformations.AddRangeAsync(transformation).ConfigureAwait(false);
             await context.SaveChangesAsync();
         }
 

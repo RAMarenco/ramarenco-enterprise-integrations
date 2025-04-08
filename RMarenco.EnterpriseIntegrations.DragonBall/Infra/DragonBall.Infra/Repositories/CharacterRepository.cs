@@ -68,7 +68,7 @@ namespace DragonBall.Infra.Repositories
         {
             return await context.Set<Character>()
                 .AsNoTracking()
-                .Where(c => c.Name == name)
+                .Where(c => EF.Functions.Like(c.Name, $"%{name}%"))
                 .ToListAsync();
         }
 
@@ -77,7 +77,7 @@ namespace DragonBall.Infra.Repositories
             return await context.Set<Character>()
                 .Include(c => c.Transformation)
                 .AsNoTracking()
-                .Where(c => c.Name == name)
+                .Where(c => EF.Functions.Like(c.Name, $"%{name}%"))
                 .ToListAsync();
         }
     }

@@ -6,16 +6,16 @@ namespace DragonBall.Infra.ExternalServices
 {
     public class DragonBallApi(HttpClient httpClient) : IDragonBallApi
     {
-        public async Task<CharacterResponse?> GetDragonBallCharacters(int page = 1, int limit = 10, string race = "", string affiliation = "")
+        public async Task<List<CharacterResponse>?> GetDragonBallCharacters(string race = "")
         {
-            return await httpClient.GetFromJsonAsync<CharacterResponse>
-                ($"characters?page={page}&limit={limit}&race={race}&affiliation={affiliation}");
+            return await httpClient.GetFromJsonAsync<List<CharacterResponse>>
+                ($"characters?race={race}");
         }
 
-        public async Task<TransformationResponse?> GetDragonBallTransformations()
+        public async Task<CharacterTransformationResponse?> GetDragonBallTransformations(int id = 1)
         {
-            return await httpClient.GetFromJsonAsync<TransformationResponse>
-                ($"transformations");
+            return await httpClient.GetFromJsonAsync<CharacterTransformationResponse>
+                ($"characters/{id}");
         }
     }
 }

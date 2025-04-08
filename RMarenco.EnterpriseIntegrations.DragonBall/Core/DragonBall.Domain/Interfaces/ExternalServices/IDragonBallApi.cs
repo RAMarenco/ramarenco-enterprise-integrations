@@ -4,6 +4,7 @@ namespace DragonBall.Domain.Interfaces.ExternalServices
 {
     public interface IDragonBallApi
     {
-        Task<CharacterResponse?> GetDragonBallCharacters(int page, int limit, string race, string affiliation);
+        Task<List<CharacterResponse>?> GetDragonBallCharacters(string race);
+        Task<CharacterTransformationResponse?> GetDragonBallTransformations(int id);
     }
 }

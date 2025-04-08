@@ -87,6 +87,12 @@ namespace DragonBall.Infra.Persistence.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("varchar(50)");
 
+                    b.Property<byte[]>("Version")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CharacterId");

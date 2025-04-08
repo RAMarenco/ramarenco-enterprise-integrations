@@ -4,7 +4,7 @@ namespace DragonBall.Domain.Interfaces
 {
     public interface ITransformationRepository
     {
-        Task AddTransformation(Transformation transformation);
+        Task AddTransformations(IEnumerable<Transformation> transformation);
         Task<IEnumerable<Transformation>> GetAllTransformations();
     }
 }

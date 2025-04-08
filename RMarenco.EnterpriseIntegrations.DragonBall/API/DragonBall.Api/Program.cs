@@ -1,3 +1,5 @@
+using DragonBall.Api.Middlewares;
+using DragonBall.Application;
 using DragonBall.Domain.Interfaces.ExternalServices;
 using DragonBall.Infra;
 using DragonBall.Infra.ExternalServices;
@@ -5,6 +7,7 @@ using DragonBall.Infra.ExternalServices;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddHttpClient<IDragonBallApi, DragonBallApi>(client =>
 {
@@ -26,6 +29,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<ExceptionMiddleware>();
+app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
