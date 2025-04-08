@@ -24,11 +24,17 @@ namespace DragonBall.Api.Middlewares
             var details = string.Empty;
             switch (ex)
             {
-                case ConflictException conflict:
+                case ConflictException:
                     statusCode = HttpStatusCode.Conflict;
                     break;
-                case NoContentException noContent:
+                case NoContentException:
                     statusCode = HttpStatusCode.NoContent;
+                    break;
+                case NotFoundException:
+                    statusCode = HttpStatusCode.NotFound;
+                    break;
+                case BadRequestException:
+                    statusCode = HttpStatusCode.BadRequest;
                     break;
                 default:
                     details = ex.StackTrace ?? "";

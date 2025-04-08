@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DragonBall.Infra.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250406003819_InitialCreate")]
+    [Migration("20250408175715_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -95,6 +95,40 @@ namespace DragonBall.Infra.Persistence.Migrations
                     b.HasIndex("CharacterId");
 
                     b.ToTable("Transformation", (string)null);
+                });
+
+            modelBuilder.Entity("DragonBall.Domain.Entities.User", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AccessToken")
+                        .IsRequired()
+                        .HasMaxLength(2048)
+                        .HasColumnType("varchar(2048)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
+
+                    b.Property<string>("Salt")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.ToTable("User", (string)null);
                 });
 
             modelBuilder.Entity("DragonBall.Domain.Entities.Transformation", b =>

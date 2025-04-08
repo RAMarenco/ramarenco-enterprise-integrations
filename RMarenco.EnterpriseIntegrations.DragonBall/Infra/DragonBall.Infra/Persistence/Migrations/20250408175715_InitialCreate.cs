@@ -30,6 +30,21 @@ namespace DragonBall.Infra.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "User",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Email = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false),
+                    Password = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false),
+                    Salt = table.Column<string>(type: "varchar(256)", maxLength: 64, nullable: false),
+                    AccessToken = table.Column<string>(type: "varchar(2048)", maxLength: 2048, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_User", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Transformation",
                 columns: table => new
                 {
@@ -53,6 +68,12 @@ namespace DragonBall.Infra.Persistence.Migrations
                 name: "IX_Transformation_CharacterId",
                 table: "Transformation",
                 column: "CharacterId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_User_Email",
+                table: "User",
+                column: "Email",
+                unique: true);
         }
 
         /// <inheritdoc />
@@ -60,6 +81,9 @@ namespace DragonBall.Infra.Persistence.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Transformation");
+
+            migrationBuilder.DropTable(
+                name: "User");
 
             migrationBuilder.DropTable(
                 name: "Character");

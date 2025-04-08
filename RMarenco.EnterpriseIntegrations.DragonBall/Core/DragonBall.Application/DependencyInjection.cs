@@ -10,6 +10,7 @@ namespace DragonBall.Application
         {
             services.AddScoped<ICharacterService, CharacterService>();
             services.AddScoped<ITransformationService, TransformationService>();
+            services.AddScoped<IAuthService, AuthService>();
             return services;
         }
     }

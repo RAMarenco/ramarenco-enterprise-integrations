@@ -9,6 +9,7 @@ namespace DragonBall.Infra.Persistence
     {
         public DbSet<Character> Characters { get; set; }
         public DbSet<Transformation> Transformations { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

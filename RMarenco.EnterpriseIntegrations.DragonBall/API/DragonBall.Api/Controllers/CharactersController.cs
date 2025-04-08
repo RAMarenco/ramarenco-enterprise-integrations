@@ -27,7 +27,7 @@ namespace DragonBall.Api.Controllers
         [ProducesResponseType(typeof(CharacterDto), 200)]
         public async Task<IActionResult> GetCharacterById([FromRoute] int id, [FromQuery] bool includeTransformations = false)
         {
-            return Ok(await characterService.GetCharacterById(id, includeTransformations));
+            return Ok($"{await characterService.GetCharacterById(id, includeTransformations)}");
         }
 
         [HttpGet]
@@ -56,6 +56,7 @@ namespace DragonBall.Api.Controllers
         [ProducesResponseType(typeof(string), 200)]
         [ProducesResponseType(typeof(Response), 409)]
         [ProducesResponseType(typeof(void), 204)]
+        [ProducesResponseType(typeof(void), 401)]
         public async Task<IActionResult> SyncCharacters()
         {
             await characterService.AddCharacters();
