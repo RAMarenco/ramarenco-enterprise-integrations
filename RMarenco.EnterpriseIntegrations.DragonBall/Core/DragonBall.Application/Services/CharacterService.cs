@@ -13,7 +13,6 @@ namespace DragonBall.Application.Services
         public async Task AddCharacters()
         {
             var existingCharacters = await characterRepository.GetAllCharacters().ConfigureAwait(false);
-            Debug.WriteLine(existingCharacters);
             if (existingCharacters is not null && existingCharacters.Any())
             {
                 throw new ConflictException($"In order to sync the database, please remove the existing characters.");
