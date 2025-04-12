@@ -27,7 +27,7 @@ namespace DragonBall.Api.Controllers
         [ProducesResponseType(typeof(CharacterDto), 200)]
         public async Task<IActionResult> GetCharacterById([FromRoute] int id, [FromQuery] bool includeTransformations = false)
         {
-            return Ok($"{await characterService.GetCharacterById(id, includeTransformations)}");
+            return Ok(await characterService.GetCharacterById(id, includeTransformations));
         }
 
         [HttpGet]
